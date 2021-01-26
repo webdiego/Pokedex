@@ -15,16 +15,17 @@ const type_2 = document.querySelector('.type-2');
 const down = document.querySelector('.down')
 
 let html;
+//Function for making first letter Uppercase
 const firstUpper= function(word){
   return word[0].toUpperCase() + word.slice(1) 
 }
-const plant = async function (pokemon) {
+const pokemon = async function (pokemon) {
   try {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     const data = await res.json();
     console.log(data);
 
-    //?Show img and name
+    //?--------Show img and name
 
     names.textContent = firstUpper(data.name) ;
     const { front_default: img } = data.sprites;
@@ -32,7 +33,7 @@ const plant = async function (pokemon) {
     down.classList.remove('hidden')
     container.style.height = '120%'
 
-    //?Adding Ability
+    //?--------Adding Ability
     const [abilityOne, abilityTwo] = data.abilities;
     // console.log(abilityOne, abilityTwo);
 
@@ -46,7 +47,7 @@ const plant = async function (pokemon) {
     ability1.textContent = firstUpper(abyOne) ;
     ability2.textContent = firstUpper(abyTwo);
 
-    //Show element type
+    //?-----Show element type
     const [slotTypes1, slotTypes2] = data.types;
 
     if (!slotTypes2 ) {
@@ -69,7 +70,7 @@ const plant = async function (pokemon) {
        element2(type2); 
     }
 
-    //*Show stats
+    //?-------------Show stats
     const allStats = data.stats;
     //Remove if present all the stat in the status div
     status.innerHTML = '';
@@ -92,7 +93,7 @@ const plant = async function (pokemon) {
 
       return html
     });
-    
+    //?---Adding base of the value of the stat a different backgroundColor
     let levels = document.querySelectorAll('progress')
 
     levels.forEach(lev =>{
@@ -116,13 +117,16 @@ const plant = async function (pokemon) {
   }
 };
 
+
 input.addEventListener('keyup', function (e) {
   // console.log(e);
   if (e.keyCode === 13) {
-    plant(input.value.toLocaleLowerCase());
+    pokemon(input.value.toLocaleLowerCase());
   }
 });
 
+
+//TODO ADD MORE TYPES OF POKEMON WITH DIFFERENT BACKGROUND-COLOR
 const element1 = function (type) {
   console.log(type);
   type_1.textContent = type;
@@ -169,6 +173,3 @@ const element2 = function (type) {
   }
 };
 
-const progressBar = function(){
-
-}
