@@ -103,7 +103,7 @@ img[src=''] {
   border: 3px rgba(241, 241, 241, 0.68) solid;
   border-radius: 20px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .down {
     width: 80%;
     flex-direction: column;
